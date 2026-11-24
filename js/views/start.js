@@ -17,6 +17,7 @@
       var c = TT.local.get("calc", { bal: 100000, cur: "USD", fx: "", riskPct: 1, kind: "xxxusd", side: "long", entry: "", sl: "", tp: "" });
       root.innerHTML = '<div class="page"><div class="page-head"><h1>Start</h1><span class="sub">jak korzystać z terminala, kalkulator pozycji i słowniczek</span></div>' +
         '<div class="grid g2" style="align-items:start">' +
+        (TT.sync.user() ? "" : '<div class="insight" style="grid-column:1/-1;display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin:0"><span style="flex:1;min-width:220px"><b>Zaloguj się</b> tym samym e-mailem co w Lodówce+, żeby mieć te same transakcje na komputerze i telefonie. Bez logowania dane zostają tylko w tej przeglądarce.</span><button class="btn primary" id="st-login">Zaloguj się</button></div>') +
 
         '<div class="card"><h3>Twój plan nauki — krok po kroku</h3><ol class="steps">' +
         "<li><b>Ćwicz na wirtualnych pieniądzach.</b> W TradingView otwórz panel handlu (na dole) → <i>Paper Trading</i>. Kupujesz i sprzedajesz jak naprawdę, ale bez ryzyka. " + TT.help("paper") + "</li>" +
@@ -53,6 +54,7 @@
         '<div class="note" style="grid-column:1/-1">Terminal pomaga uczyć się na własnych danych — nie mówi, co kupić ani sprzedać. Handel z dźwignią (forex, CFD w XTB) może szybko zabrać więcej, niż się wydaje; większość początkujących na nim traci. Dlatego najpierw paper trading i małe ryzyko.</div>' +
         "</div></div>";
 
+      var lb = root.querySelector("#st-login"); if (lb) lb.onclick = TT.authModal;
       root.querySelectorAll("[data-go]").forEach(function (a) { a.onclick = function (e) { e.preventDefault(); TT.app.go(a.dataset.go); }; });
       root.querySelectorAll("[data-c]").forEach(function (i) { i.addEventListener("input", calc); i.addEventListener("change", calc); });
       root.querySelectorAll("[data-cs]").forEach(function (b) { b.onclick = function () { c.side = b.dataset.cs; root.querySelectorAll("[data-cs]").forEach(function (x) { x.classList.toggle("on", x === b); }); calc(); }; });

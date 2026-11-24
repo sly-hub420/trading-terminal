@@ -77,6 +77,9 @@
       btn.textContent = u ? (u.email || "Konto").split("@")[0] : "Zaloguj";
       btn.className = u ? "tb-btn" : "tb-btn accent";
       if (u && !A._newsFor) { A._newsFor = u.id; TT.news.load(); }
+      var uid = u ? u.id : null;
+      if (A._lastUser !== undefined && A._lastUser !== uid && A.view === "start") A.renderPage();
+      A._lastUser = uid;
     },
 
     renderSide: function () {

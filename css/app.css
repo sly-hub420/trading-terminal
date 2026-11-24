@@ -323,6 +323,8 @@ details.lesson[open] > summary { color: var(--blue); }
   #app { height: 100dvh; padding-top: env(safe-area-inset-top); padding-bottom: calc(56px + env(safe-area-inset-bottom)); }
   #topbar { overflow-x: auto; gap: 0; padding: 0 4px; }
   #topbar > * { flex-shrink: 0; }
+  #btn-auth { position: sticky; right: 0; z-index: 2; box-shadow: -10px 0 10px var(--bg); }
+  #btn-auth:not(.accent) { background: var(--bg); }
   .bp-tab { white-space: nowrap; font-size: 12px; }
   .bp-tabs { overflow-x: auto; }
   #topbar .logo, #topbar .sep, #sync-badge .txt, .tb-btn .lbl, #btn-live { display: none; }
